@@ -16,7 +16,7 @@
       local_action:
         module: rax
         credentials: ~/.raxpub
-        name: web%04d.example.org
+        name: ie.amartus.cloud.test.%04d
         flavor: 2
         image: ubuntu-1204-lts-precise-pangolin
         disk_config: manual
@@ -25,9 +25,9 @@
           - my-net
         region: LON
         state: present
-        count: 5
+        count: 1
         exact_count: yes
-        group: web
+        group: test
         wait: yes
         wait_timeout: 360
       register: rax
