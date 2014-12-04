@@ -18,7 +18,7 @@
         credentials: ~/.raxpub
         name: ie.amartus.cloud.test.%04d
         flavor: 2
-        image: dbb59b04-bd50-4eef-b05e-6a6451ef9bf2
+        image: bb02b1a3-bc77-4d17-ab5b-421d89850fca
         disk_config: manual
         networks:
           - public
