@@ -1,0 +1,24 @@
+- name: Build Servers on an Isolated Network
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: Server create request
+      local_action:
+        module: rax
+        credentials: ~/.raxpub
+        name: ie.amartus.cloud.test.%04d
+        flavor: 2
+        image: ubuntu-1204-lts-precise-pangolin
+        disk_config: manual
+        networks:
+          - public
+          - my-net
+        region: LON
+        state: present
+        count: 0
+        exact_count: yes
+        group: test
+        wait: yes
+        wait_timeout: 360
+      register: rax
