@@ -1,0 +1,33 @@
+- name: Build Servers on an Isolated Network
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: Network create request
+      local_action:
+        module: rax_network
+        credentials: ~/.raxpub
+        label: my-net
+        cidr: 192.168.3.0/24
+        region: IAD
+        state: present
+
+    - name: Server create request
+      local_action:
+        module: rax
+        credentials: ~/.raxpub
+        name: web%04d.example.org
+        flavor: 2
+        image: ubuntu-1204-lts-precise-pangolin
+        disk_config: manual
+        networks:
+          - public
+          - my-net
+        region: IAD
+        state: present
+        count: 5
+        exact_count: yes
+        group: web
+        wait: yes
+        wait_timeout: 360
+      register: rax
