@@ -9,7 +9,7 @@
       local_action:
         module: rax_network
         credentials: ~/.raxpub
-        label: my-net
+        label: test-net
         cidr: 192.168.3.0/24
         region: LON
         state: present
