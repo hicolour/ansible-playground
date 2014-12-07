@@ -2,6 +2,8 @@
   hosts: localhost
   connection: local
   gather_facts: False
+  vars:
+    spawn_domain_name: amartus.io
   tasks:
     - name: Network create request
       local_action:
@@ -36,7 +38,7 @@
       local_action:
         module: rax_dns_record
         credentials: ~/.raxpub
-        domain: "{{rax_name}}.amartus.io"
+        domain: "{{spawn_domain_name}}"
         name: "{{inventory_hostname}}"
         data: "{{rax_accessipv4}}"
         type: A
