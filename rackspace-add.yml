@@ -22,7 +22,7 @@
         disk_config: manual
         networks:
           - public
-          - my-net
+          - test-net
         region: LON
         state: present
         count: 1
@@ -31,3 +31,13 @@
         wait: yes
         wait_timeout: 360
       register: rax
+      
+   - name: Adding forward DNS Entry
+      local_action:
+        module: rax_dns_record
+        credentials: ~/.raxpub
+        domain: "{{rax_name}}.amartus.io"
+        name: "{{inventory_hostname}}"
+        data: "{{rax_accessipv4}}"
+        type: A
+      register: rax_dns_record
