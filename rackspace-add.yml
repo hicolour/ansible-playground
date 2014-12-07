@@ -4,6 +4,7 @@
   gather_facts: False
   vars:
     spawn_domain_name: amartus.io
+    spawn_name: test-001
   tasks:
     - name: Network create request
       local_action:
@@ -18,7 +19,7 @@
       local_action:
         module: rax
         credentials: ~/.raxpub
-        name: io.amartus.cloud.test.%04d
+        name: "io.amartus.cloud.test.{{  spawn_name }}"
         flavor: 2
         image: bb02b1a3-bc77-4d17-ab5b-421d89850fca
         disk_config: manual
@@ -39,7 +40,7 @@
         module: rax_dns_record
         credentials: ~/.raxpub
         domain: "{{spawn_domain_name}}"
-        name: "test-%04d.{{spawn_domain_name}}"
+        name: "{{  spawn_name }}.{{  spawn_domain_name  }}"
         data: "{{ item.rax_accessipv4 }}"
         type: A
       register: rax_dns_record
