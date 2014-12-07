@@ -16,7 +16,7 @@
       local_action:
         module: rax
         credentials: ~/.raxpub
-        name: ie.amartus.cloud.test.%04d
+        name: io.amartus.cloud.test.%04d
         flavor: 2
         image: bb02b1a3-bc77-4d17-ab5b-421d89850fca
         disk_config: manual
