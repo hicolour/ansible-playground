@@ -34,12 +34,24 @@
         wait_timeout: 360
       register: rax
       
-    - name: Adding forward DNS Entry
+   - name: Add servers to in memory groups
       local_action:
-        module: rax_dns_record
-        credentials: ~/.raxpub
-        domain: "{{spawn_domain_name}}"
-        name: "{{inventory_hostname}}"
-        data: "{{ item.rax_accessipv4 }}"
-        type: A
-      register: rax_dns_record
+        module: add_host
+        hostname: "{{ item.name }}"
+        ansible_ssh_host: "{{ item.rax_accessipv4 }}"
+        ansible_ssh_pass: "{{ item.rax_adminpass }}"
+        ansible_ssh_user: root
+        rax_id: "{{ item.rax_id }}"
+        groups: web,new_web
+      with_items: rax.success
+      when: rax.action == 'create'
+      
+    # - name: Adding forward DNS Entry
+    #   local_action:
+    #     module: rax_dns_record
+    #     credentials: ~/.raxpub
+    #     domain: "{{spawn_domain_name}}"
+    #     name: "{{inventory_hostname}}"
+    #     data: "{{ item.rax_accessipv4 }}"
+    #     type: A
+    #   register: rax_dns_record
