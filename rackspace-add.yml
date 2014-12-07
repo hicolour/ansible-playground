@@ -39,7 +39,7 @@
         module: rax_dns_record
         credentials: ~/.raxpub
         domain: "{{spawn_domain_name}}"
-        name: "{{ item.name }}"
+        name: "{{ item.rax_name }}"
         data: "{{ item.rax_accessipv4 }}"
         type: A
       register: rax_dns_record
