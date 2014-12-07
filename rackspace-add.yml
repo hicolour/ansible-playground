@@ -34,7 +34,7 @@
         wait_timeout: 360
       register: rax
       
-   - name: Adding forward DNS Entry
+    - name: Adding forward DNS Entry
       local_action:
         module: rax_dns_record
         credentials: ~/.raxpub
