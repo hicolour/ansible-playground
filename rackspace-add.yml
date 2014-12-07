@@ -34,7 +34,7 @@
         wait_timeout: 360
       register: rax
       
-   - name: Add servers to in memory groups
+    - name: Add servers to in memory groups
       local_action:
         module: add_host
         hostname: "{{ item.name }}"
