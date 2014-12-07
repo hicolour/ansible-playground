@@ -15,13 +15,13 @@
         region: LON
         state: present
 
-    - name: Server create request
+    - name: Server (Centos) create request
       local_action:
         module: rax
         credentials: ~/.raxpub
         name: "io.amartus.cloud.test.{{  spawn_name }}"
         flavor: 2
-        image: bb02b1a3-bc77-4d17-ab5b-421d89850fca
+        image: f0d3b38b-61e3-47c4-83c7-98c4e7038809
         disk_config: manual
         networks:
           - public
